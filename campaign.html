@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="《崩壞3rd》數碼敘事、品牌分析與互動企劃網站。" />
+  <title>記憶檔案｜Honkai Storybrand Archive</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+</head>
+<body data-page="campaign">
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand-mark" href="index.html" aria-label="Honkai Storybrand Archive home">
+        <span class="brand-icon">✦</span>
+        <span><strong>Honkai Storybrand</strong><small>Bernie’s Research Hub</small></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">☰</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="index.html">首頁</a>
+<a href="brand.html">品牌分析</a>
+<a href="story.html">故事設計</a>
+<a class="active" href="campaign.html">記憶檔案</a>
+<a href="characters.html">角色圖鑑</a>
+<a href="reflection.html">批判反思</a>
+<a href="resources.html">作業地圖</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    
+<section class="page-hero campaign-hero">
+  <p class="eyebrow">Interactive Campaign Prototype</p>
+  <h1>記憶檔案：為所有美好而戰</h1>
+  <p class="lead narrow">這是你可以放入功課的互動式數碼敘事 campaign。它的目標是幫新玩家快速理解故事，同時讓老玩家重溫角色記憶。</p>
+</section>
+
+<section class="section two-col">
+  <div class="sticky-note reveal">
+    <p class="eyebrow">Concept</p>
+    <h2>玩家扮演艦長，打開角色記憶</h2>
+    <p>每一個記憶節點都是一個故事入口，玩家可以按時間線探索角色弧光、動畫短片、情感事件與 Part 2 invitation。</p>
+  </div>
+  <div class="memory-interface reveal delay-1">
+    <div class="memory-tabs" role="tablist" aria-label="memory archive nodes">
+      <button class="memory-btn active" data-memory="0">01 邂逅</button>
+      <button class="memory-btn" data-memory="1">02 犧牲</button>
+      <button class="memory-btn" data-memory="2">03 真相</button>
+      <button class="memory-btn" data-memory="3">04 救贖</button>
+      <button class="memory-btn" data-memory="4">05 未來</button>
+    </div>
+    <article class="memory-card" id="memory-card">
+      <p class="eyebrow" id="memory-tag">Memory 01</p>
+      <h3 id="memory-title">邂逅：初識女武神</h3>
+      <p id="memory-copy">介紹 Kiana、Mei、Bronya 的初期關係，讓新玩家理解故事的情感起點。</p>
+      <ul id="memory-points"><li>角色關係入口</li><li>學園與任務背景</li><li>建立玩家與三人組的連結</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-heading reveal">
+    <p class="eyebrow">Interactive Elements</p>
+    <h2>互動設計與目的</h2>
+  </div>
+  <div class="card-grid four reveal delay-1">
+    <article class="card"><h3>可點擊時間線</h3><p>解決故事入口碎片化，令新玩家用最短時間建立主線框架。</p></article>
+    <article class="card"><h3>角色記憶卡</h3><p>把角色弧光轉成可閱讀、可收藏、可分享的視覺內容。</p></article>
+    <article class="card"><h3>艦長留言牆</h3><p>讓玩家把自己和角色的記憶加入作品，形成社群共創。</p></article>
+    <article class="card"><h3>Part 2 Invitation</h3><p>將回顧內容轉成新章節入口，達到 campaign conversion。</p></article>
+  </div>
+</section>
+
+<section class="section quiz-section">
+  <div class="section-heading reveal">
+    <p class="eyebrow">Mini Interaction</p>
+    <h2>你係邊種艦長？</h2>
+    <p>小型互動問答，用作 campaign engagement demo。</p>
+  </div>
+  <div class="quiz-box reveal delay-1">
+    <p id="quiz-question">你最想喺《崩壞3rd》入面體驗咩？</p>
+    <div id="quiz-options" class="quiz-options"></div>
+    <div id="quiz-result" class="quiz-result" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section two-col">
+  <div class="sticky-note reveal">
+    <p class="eyebrow">Captain Wall</p>
+    <h2>艦長留言牆</h2>
+    <p>這個留言牆用 localStorage 暫存，只在自己瀏覽器保留。適合示範互動概念，不需要後端。</p>
+  </div>
+  <div class="note-wall reveal delay-1">
+    <textarea id="captain-note" placeholder="寫低你最記得的一幕，例如：最後一課、畢業旅行、月下回憶……"></textarea>
+    <button class="btn primary" id="save-note">加入留言牆</button>
+    <div id="notes-list" class="notes-list"></div>
+  </div>
+</section>
+
+  </main>
+  <footer class="site-footer">
+    <p>Fan-made academic project website. Content is for study and portfolio use only.</p>
+    <p>Built as a static GitHub Pages site · No backend required.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  
+</body>
+</html>

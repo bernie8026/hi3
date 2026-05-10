@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="《崩壞3rd》數碼敘事、品牌分析與互動企劃網站。" />
+  <title>角色圖鑑｜Honkai Storybrand Archive</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+</head>
+<body data-page="characters">
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand-mark" href="index.html" aria-label="Honkai Storybrand Archive home">
+        <span class="brand-icon">✦</span>
+        <span><strong>Honkai Storybrand</strong><small>Bernie’s Research Hub</small></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">☰</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="index.html">首頁</a>
+<a href="brand.html">品牌分析</a>
+<a href="story.html">故事設計</a>
+<a href="campaign.html">記憶檔案</a>
+<a class="active" href="characters.html">角色圖鑑</a>
+<a href="reflection.html">批判反思</a>
+<a href="resources.html">作業地圖</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    
+<section class="page-hero">
+  <p class="eyebrow">Character Gallery</p>
+  <h1>角色圖鑑：故事功能版</h1>
+  <p class="lead narrow">這個圖鑑不只是放圖，而是將每個角色轉成 report 可用的「故事功能」與 archetype。</p>
+</section>
+<section class="section">
+  <div class="search-bar reveal">
+    <input id="character-search" type="search" placeholder="搜尋中文名、英文名、角色功能，例如 Kiana / 琪亞娜 / 導師" />
+    <span id="character-count">Loading...</span>
+  </div>
+  <div id="character-grid" class="character-grid reveal delay-1"></div>
+</section>
+<div class="modal" id="character-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close="modal"></div>
+  <article class="modal-card" role="dialog" aria-modal="true" aria-label="角色詳情">
+    <button class="modal-close" data-close="modal">×</button>
+    <img id="modal-img" alt="" />
+    <div>
+      <p class="eyebrow" id="modal-role"></p>
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+    </div>
+  </article>
+</div>
+
+  </main>
+  <footer class="site-footer">
+    <p>Fan-made academic project website. Content is for study and portfolio use only.</p>
+    <p>Built as a static GitHub Pages site · No backend required.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  
+</body>
+</html>
