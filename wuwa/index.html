@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="鳴潮風格的非官方概念首頁，由 Bernie 製作。" />
-  <meta name="theme-color" content="#07110f" />
-  <title>鳴潮｜Wuthering Waves Concept</title>
+  <meta name="description" content="《鳴潮》非官方繁體中文資料首頁：共鳴者、聲骸、世界觀、地區與官方入口。" />
+  <meta name="theme-color" content="#070b0a" />
+  <title>鳴潮｜Wuthering Waves</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #050908;
-      --bg-soft: #0b1412;
-      --panel: rgba(8, 17, 15, .72);
-      --panel-strong: rgba(6, 13, 12, .92);
-      --line: rgba(203, 255, 235, .2);
-      --line-bright: rgba(203, 255, 235, .55);
-      --text: #f3f7f5;
-      --muted: #a9b6b1;
-      --accent: #b9ffe6;
-      --accent-2: #62e6bd;
-      --warning: #e8dca4;
-      --shadow: 0 22px 70px rgba(0, 0, 0, .42);
-      --max: 1240px;
+      --bg: #060a09;
+      --bg-2: #0b1110;
+      --panel: rgba(10, 17, 15, .84);
+      --panel-2: rgba(17, 26, 23, .76);
+      --line: rgba(216, 255, 241, .18);
+      --line-strong: rgba(216, 255, 241, .48);
+      --text: #f4f7f5;
+      --muted: #aab6b1;
+      --accent: #c9fbe8;
+      --accent-2: #69ddb6;
+      --gold: #d4c693;
+      --danger: #d98989;
+      --max: 1280px;
+      --shadow: 0 30px 90px rgba(0, 0, 0, .45);
     }
 
     * { box-sizing: border-box; }
@@ -31,11 +32,11 @@
     body {
       margin: 0;
       color: var(--text);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(54, 129, 107, .16), transparent 28%),
-        radial-gradient(circle at 90% 42%, rgba(117, 205, 175, .09), transparent 24%),
-        var(--bg);
       font-family: "Noto Sans TC", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 10% 5%, rgba(72, 158, 128, .17), transparent 24%),
+        radial-gradient(circle at 88% 16%, rgba(175, 198, 177, .08), transparent 28%),
+        linear-gradient(180deg, #050807 0%, #0a100e 50%, #050807 100%);
       overflow-x: hidden;
     }
 
@@ -43,775 +44,400 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: -2;
       pointer-events: none;
-      opacity: .16;
-      z-index: 100;
-      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 100% 4px;
-      mix-blend-mode: overlay;
+      opacity: .25;
+      background-image:
+        linear-gradient(rgba(255,255,255,.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.024) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
     }
 
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
-    img { display: block; max-width: 100%; }
+    img { max-width: 100%; display: block; }
+    .wrap { width: min(var(--max), calc(100% - 42px)); margin-inline: auto; }
+    .eyebrow, .mono { font-family: "Rajdhani", sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+    .muted { color: var(--muted); }
 
-    .skip-link {
-      position: fixed;
-      left: 16px;
-      top: -80px;
-      z-index: 999;
-      padding: 12px 16px;
-      background: var(--accent);
-      color: #06100d;
-      transition: top .2s ease;
-    }
-    .skip-link:focus { top: 16px; }
+    .skip-link { position: fixed; left: 14px; top: -60px; z-index: 999; padding: 10px 14px; background: var(--accent); color: #06100c; }
+    .skip-link:focus { top: 14px; }
 
     .site-header {
       position: fixed;
       inset: 0 0 auto;
-      z-index: 50;
+      z-index: 100;
       border-bottom: 1px solid transparent;
-      transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+      transition: .25s ease;
     }
     .site-header.scrolled {
-      background: rgba(3, 8, 7, .8);
-      border-color: var(--line);
+      background: rgba(5, 9, 8, .86);
       backdrop-filter: blur(18px);
+      border-color: var(--line);
     }
-    .nav-shell {
-      width: min(var(--max), calc(100% - 40px));
-      height: 82px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 210px;
-      letter-spacing: .08em;
-    }
+    .nav-shell { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 13px; min-width: max-content; }
     .brand-glyph {
-      width: 40px;
-      height: 40px;
-      position: relative;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line-bright);
-      transform: rotate(45deg);
-      background: rgba(185, 255, 230, .04);
-      box-shadow: inset 0 0 18px rgba(185, 255, 230, .08);
+      width: 38px; height: 38px; position: relative; border: 1px solid var(--line-strong);
+      transform: rotate(45deg); background: rgba(174, 255, 226, .05);
     }
-    .brand-glyph::before,
-    .brand-glyph::after {
-      content: "";
-      position: absolute;
-      background: var(--accent);
-      opacity: .8;
-    }
-    .brand-glyph::before { width: 18px; height: 1px; }
-    .brand-glyph::after { width: 1px; height: 18px; }
-    .brand-copy { line-height: 1; }
-    .brand-copy strong {
-      display: block;
-      font-family: Rajdhani, sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: .22em;
-    }
-    .brand-copy small {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: .25em;
-    }
+    .brand-glyph::before, .brand-glyph::after { content: ""; position: absolute; inset: 7px; border: 1px solid var(--accent-2); }
+    .brand-glyph::after { inset: 13px; background: var(--accent); box-shadow: 0 0 18px rgba(105, 221, 182, .7); }
+    .brand-copy strong { display: block; font-size: 1.1rem; letter-spacing: .18em; }
+    .brand-copy small { color: var(--muted); font: 600 .72rem "Rajdhani"; letter-spacing: .2em; }
 
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .site-nav a {
-      position: relative;
-      padding: 29px 15px 27px;
-      color: #d8e2de;
-      font-size: 14px;
-      letter-spacing: .08em;
-      transition: color .2s ease;
-    }
-    .site-nav a::after {
-      content: "";
-      position: absolute;
-      left: 15px;
-      right: 15px;
-      bottom: 18px;
-      height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transition: transform .2s ease;
-    }
-    .site-nav a:hover,
-    .site-nav a.active { color: var(--accent); }
-    .site-nav a:hover::after,
-    .site-nav a.active::after { transform: scaleX(1); }
+    .site-nav { display: flex; align-items: center; gap: 6px; }
+    .site-nav a { position: relative; padding: 26px 12px 22px; color: #c9d1cd; font-size: .92rem; }
+    .site-nav a::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 14px; height: 1px; transform: scaleX(0); background: var(--accent-2); transition: .2s; }
+    .site-nav a:hover, .site-nav a.active { color: white; }
+    .site-nav a:hover::after, .site-nav a.active::after { transform: scaleX(1); }
+    .nav-download { border: 1px solid var(--line-strong); margin-left: 8px; padding: 10px 16px !important; }
+    .nav-download::after { display: none; }
+    .menu-btn { display: none; width: 42px; height: 42px; color: white; background: transparent; border: 1px solid var(--line); }
 
-    .header-actions { display: flex; align-items: center; gap: 10px; }
-    .lang-btn,
-    .menu-btn {
-      border: 1px solid var(--line);
-      background: rgba(3, 10, 8, .3);
-      color: var(--text);
-      height: 42px;
-      min-width: 42px;
-      cursor: pointer;
-    }
-    .lang-btn { padding: 0 13px; font-family: Rajdhani, sans-serif; letter-spacing: .08em; }
-    .menu-btn { display: none; font-size: 20px; }
-
-    .hero {
-      min-height: 100svh;
-      position: relative;
-      display: grid;
-      align-items: end;
-      isolation: isolate;
-      background:
-        linear-gradient(90deg, rgba(3, 8, 7, .96) 0%, rgba(3, 8, 7, .75) 36%, rgba(3, 8, 7, .18) 66%, rgba(3, 8, 7, .52) 100%),
-        linear-gradient(0deg, var(--bg) 0%, transparent 28%),
-        url("https://wutheringwaves.kurogames.com/website-preface/video/bg/bg-poster.png") center/cover no-repeat;
-    }
+    .hero { min-height: 100svh; position: relative; display: grid; align-items: end; padding: 130px 0 74px; overflow: hidden; }
     .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(115deg, transparent 0 49.85%, rgba(185,255,230,.18) 50%, transparent 50.15%),
-        radial-gradient(circle at 70% 45%, rgba(177, 255, 228, .18), transparent 24%);
-      animation: pulseGlow 5s ease-in-out infinite;
+      content: ""; position: absolute; width: 72vw; aspect-ratio: 1; right: -19vw; top: -12vw; border-radius: 50%;
+      border: 1px solid rgba(206,255,237,.12); box-shadow: inset 0 0 0 80px rgba(153,255,217,.018), inset 0 0 0 160px rgba(153,255,217,.014);
+      animation: spin 28s linear infinite;
     }
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 150px;
-      z-index: -1;
-      background: linear-gradient(transparent, var(--bg));
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(5,9,8,.96) 0%, rgba(5,9,8,.72) 44%, rgba(5,9,8,.17) 75%),
+        radial-gradient(ellipse at 72% 44%, rgba(98,230,189,.23), transparent 24%),
+        linear-gradient(135deg, transparent 48%, rgba(217,255,241,.06) 49%, transparent 50%);
     }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: .58; }
-      50% { opacity: 1; }
-    }
-
-    .hero-shell {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      padding: 170px 0 94px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .55fr);
-      align-items: end;
-      gap: 70px;
-    }
-    .kicker {
-      margin: 0 0 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--accent);
-      font-family: Rajdhani, sans-serif;
-      font-weight: 600;
-      letter-spacing: .26em;
-      text-transform: uppercase;
-    }
-    .kicker::before { content: ""; width: 46px; height: 1px; background: currentColor; }
-    .hero h1 {
-      margin: 0;
-      max-width: 850px;
-      font-size: clamp(54px, 8.8vw, 132px);
-      font-weight: 900;
-      line-height: .82;
-      letter-spacing: -.06em;
-      text-shadow: 0 6px 36px rgba(0,0,0,.45);
-    }
-    .hero h1 span {
-      display: block;
-      margin-top: 21px;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(232, 255, 246, .72);
-      font-family: Rajdhani, sans-serif;
-      font-size: .42em;
-      font-weight: 600;
-      letter-spacing: .28em;
-    }
-    .hero-copy {
-      max-width: 650px;
-      margin: 32px 0 0;
-      color: #d0d9d5;
-      font-size: clamp(16px, 1.5vw, 19px);
-      line-height: 1.9;
-      text-shadow: 0 2px 18px rgba(0,0,0,.65);
-    }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 70px; align-items: end; }
+    .hero-copy { max-width: 850px; }
+    .hero-kicker { display: flex; align-items: center; gap: 14px; color: var(--accent); font: 600 .9rem "Rajdhani"; letter-spacing: .25em; }
+    .hero-kicker::before { content: ""; width: 54px; height: 1px; background: var(--accent-2); }
+    .hero h1 { margin: 18px 0 10px; font-size: clamp(4.4rem, 11vw, 10rem); line-height: .78; font-weight: 900; letter-spacing: -.07em; }
+    .hero h1 span { display: block; margin-top: 22px; font: 600 clamp(1.2rem, 2.8vw, 2.4rem) "Rajdhani"; letter-spacing: .32em; color: var(--accent); }
+    .hero-lead { max-width: 640px; margin: 28px 0; color: #c6d0cc; font-size: 1.05rem; line-height: 1.9; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn {
-      min-height: 52px;
-      padding: 0 25px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      border: 1px solid var(--line-bright);
-      font-weight: 700;
-      letter-spacing: .08em;
-      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
-      transition: transform .2s ease, background .2s ease, color .2s ease;
+      min-height: 50px; padding: 0 22px; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      border: 1px solid var(--line-strong); background: rgba(10,18,15,.5); color: white; transition: .22s ease;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     }
-    .btn:hover { transform: translateY(-3px); }
-    .btn.primary { background: var(--accent); color: #07100e; }
-    .btn.ghost { background: rgba(4, 12, 10, .55); backdrop-filter: blur(10px); }
-    .btn .arrow { font-family: Rajdhani, sans-serif; font-size: 22px; }
+    .btn.primary { color: #06110d; background: var(--accent); border-color: var(--accent); font-weight: 700; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(105,221,182,.12); }
 
-    .hero-data {
-      align-self: end;
-      border-left: 1px solid var(--line-bright);
-      padding: 8px 0 8px 24px;
-      backdrop-filter: blur(3px);
-    }
-    .data-label {
-      margin: 0 0 12px;
-      color: var(--accent);
-      font-family: Rajdhani, sans-serif;
-      font-size: 12px;
-      letter-spacing: .24em;
-    }
-    .hero-data h2 { margin: 0; font-size: 27px; line-height: 1.35; }
-    .hero-data p { margin: 14px 0 0; color: var(--muted); line-height: 1.75; font-size: 14px; }
-    .signal {
-      display: flex;
-      align-items: end;
-      gap: 4px;
-      height: 34px;
-      margin-top: 24px;
-    }
-    .signal i { width: 3px; background: var(--accent); opacity: .75; animation: wave 1.2s ease-in-out infinite; }
-    .signal i:nth-child(1) { height: 10px; }
-    .signal i:nth-child(2) { height: 24px; animation-delay: -.15s; }
-    .signal i:nth-child(3) { height: 15px; animation-delay: -.3s; }
-    .signal i:nth-child(4) { height: 31px; animation-delay: -.45s; }
-    .signal i:nth-child(5) { height: 18px; animation-delay: -.6s; }
-    .signal i:nth-child(6) { height: 26px; animation-delay: -.75s; }
-    .signal i:nth-child(7) { height: 11px; animation-delay: -.9s; }
-    @keyframes wave { 0%,100% { transform: scaleY(.5); opacity: .35; } 50% { transform: scaleY(1); opacity: 1; } }
+    .terminal-card { position: relative; padding: 24px; border: 1px solid var(--line); background: rgba(7,13,11,.68); backdrop-filter: blur(12px); box-shadow: var(--shadow); }
+    .terminal-card::before { content: ""; position: absolute; left: -1px; top: -1px; width: 44px; height: 3px; background: var(--accent-2); }
+    .terminal-head { display: flex; justify-content: space-between; color: var(--muted); font: 600 .75rem "Rajdhani"; letter-spacing: .16em; }
+    .waveform { height: 72px; margin: 28px 0; display: flex; align-items: center; justify-content: center; gap: 5px; }
+    .waveform span { width: 3px; height: var(--h); background: var(--accent); opacity: .75; animation: pulse 1.8s ease-in-out infinite alternate; animation-delay: var(--d); }
+    @keyframes pulse { to { height: calc(var(--h) * .35); opacity: .28; } }
+    .terminal-data { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .terminal-data div { padding: 12px; border: 1px solid var(--line); }
+    .terminal-data small { display: block; color: var(--muted); }
+    .terminal-data strong { font: 600 1.2rem "Rajdhani"; color: var(--accent); }
 
-    .scroll-mark {
-      position: absolute;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      color: var(--muted);
-      font-family: Rajdhani, sans-serif;
-      font-size: 10px;
-      letter-spacing: .3em;
-    }
-    .scroll-mark::after { content: ""; width: 1px; height: 42px; background: linear-gradient(var(--accent), transparent); }
+    section { scroll-margin-top: 76px; }
+    .section { padding: 110px 0; position: relative; }
+    .section.alt { background: rgba(255,255,255,.018); border-block: 1px solid rgba(255,255,255,.04); }
+    .section-head { margin-bottom: 42px; display: flex; justify-content: space-between; align-items: end; gap: 30px; }
+    .section-index { color: var(--accent-2); font: 600 .82rem "Rajdhani"; letter-spacing: .22em; }
+    .section h2 { margin: 8px 0 0; font-size: clamp(2.2rem, 5vw, 4.7rem); line-height: 1; letter-spacing: -.045em; }
+    .section-head > p { max-width: 540px; color: var(--muted); line-height: 1.8; }
 
-    main section:not(.hero) {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      padding: 112px 0;
-    }
-    .section-head {
-      display: grid;
-      grid-template-columns: .6fr 1fr;
-      gap: 50px;
-      align-items: end;
-      margin-bottom: 50px;
-    }
-    .index {
-      color: var(--accent);
-      font-family: Rajdhani, sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: .24em;
-    }
-    .section-head h2 {
-      margin: 8px 0 0;
-      font-size: clamp(38px, 5vw, 70px);
-      line-height: 1;
-      letter-spacing: -.04em;
-    }
-    .section-head p { margin: 0; color: var(--muted); line-height: 1.9; }
+    .portal-grid { display: grid; grid-template-columns: 1.15fr .85fr .85fr; gap: 16px; }
+    .portal-card { min-height: 300px; padding: 26px; position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+    .portal-card::before { content: ""; position: absolute; inset: auto -60px -100px auto; width: 240px; height: 240px; border: 1px solid var(--line-strong); border-radius: 50%; }
+    .portal-card.featured { min-height: 420px; grid-row: span 2; background: linear-gradient(145deg, rgba(26,62,52,.64), rgba(5,10,8,.92)); }
+    .portal-card h3 { margin: 110px 0 8px; font-size: 1.7rem; }
+    .portal-card.featured h3 { margin-top: 185px; font-size: 2.5rem; }
+    .portal-card p { color: var(--muted); line-height: 1.7; }
+    .portal-card .tag { display: inline-flex; padding: 5px 9px; border: 1px solid var(--line); color: var(--accent); font: 600 .72rem "Rajdhani"; letter-spacing: .14em; }
+    .portal-card .corner { position: absolute; right: 20px; top: 18px; color: rgba(255,255,255,.22); font: 700 3rem "Rajdhani"; }
 
-    .news-grid {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr .85fr;
-      gap: 16px;
-    }
-    .news-card {
-      min-height: 410px;
-      position: relative;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(0deg, rgba(2, 7, 6, .98), rgba(2, 7, 6, .12) 72%),
-        radial-gradient(circle at 70% 20%, var(--card-glow, rgba(98,230,189,.32)), transparent 32%),
-        linear-gradient(135deg, #1b2c27, #070d0c 68%);
-      box-shadow: var(--shadow);
-      clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
-      transition: transform .25s ease, border-color .25s ease;
-    }
-    .news-card::before {
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      right: -60px;
-      top: -60px;
-      border: 1px solid var(--line-bright);
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 28px rgba(185,255,230,.015), inset 0 0 0 58px rgba(185,255,230,.018);
-    }
-    .news-card::after {
-      content: "RESONANCE // 0" attr(data-id);
-      position: absolute;
-      right: 21px;
-      top: 22px;
-      color: rgba(232,255,246,.5);
-      font-family: Rajdhani, sans-serif;
-      font-size: 10px;
-      letter-spacing: .2em;
-    }
-    .news-card:hover { transform: translateY(-8px); border-color: var(--line-bright); }
-    .news-card.featured { min-height: 510px; }
-    .tag {
-      width: max-content;
-      margin-bottom: 14px;
-      padding: 7px 10px;
-      color: var(--accent);
-      border: 1px solid var(--line-bright);
-      background: rgba(3, 10, 8, .45);
-      font-family: Rajdhani, sans-serif;
-      font-size: 11px;
-      letter-spacing: .18em;
-    }
-    .news-card h3 { position: relative; margin: 0; font-size: clamp(24px, 3vw, 42px); line-height: 1.2; }
-    .news-card p { position: relative; margin: 13px 0 0; color: var(--muted); line-height: 1.65; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; }
+    .filter-btn { padding: 9px 14px; color: var(--muted); background: transparent; border: 1px solid var(--line); cursor: pointer; }
+    .filter-btn:hover, .filter-btn.active { color: #06100c; background: var(--accent); border-color: var(--accent); }
+    .resonator-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .resonator-card { min-height: 360px; position: relative; overflow: hidden; padding: 24px; border: 1px solid var(--line); background: linear-gradient(160deg, var(--tone), rgba(5,9,8,.96) 70%); transition: .25s; }
+    .resonator-card:hover { transform: translateY(-6px); border-color: var(--line-strong); }
+    .resonator-card.hidden { display: none; }
+    .resonator-card::before { content: ""; position: absolute; width: 230px; height: 230px; right: -65px; top: -48px; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; box-shadow: inset 0 0 0 28px rgba(255,255,255,.015), inset 0 0 0 58px rgba(255,255,255,.015); }
+    .resonator-card::after { content: ""; position: absolute; left: 24px; top: 92px; width: 54%; height: 150px; opacity: .28; background: linear-gradient(90deg, transparent, var(--element), transparent); filter: blur(24px); transform: skewY(-18deg); }
+    .resonator-number { position: absolute; right: 18px; top: 12px; color: rgba(255,255,255,.22); font: 700 4rem "Rajdhani"; }
+    .resonator-meta { display: flex; gap: 8px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .pill { padding: 5px 9px; border: 1px solid var(--line); color: var(--muted); font-size: .72rem; }
+    .pill.element { color: var(--element); border-color: color-mix(in srgb, var(--element) 50%, transparent); }
+    .resonator-info { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 1; }
+    .resonator-info h3 { margin: 0 0 7px; font-size: 2rem; }
+    .resonator-info p { margin: 0; color: var(--muted); line-height: 1.65; }
 
-    .resonator-shell {
-      position: relative;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .resonator-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .resonator {
-      min-height: 480px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: linear-gradient(160deg, var(--tone, #20352f), #070c0b 60%);
-      cursor: pointer;
-      transition: flex .3s ease, transform .25s ease, border-color .25s ease;
-    }
-    .resonator:hover { transform: translateY(-6px); border-color: var(--accent); }
-    .resonator::before {
-      content: "";
-      position: absolute;
-      inset: 16px;
-      border: 1px solid rgba(226, 255, 244, .12);
-      clip-path: polygon(0 0, 76% 0, 100% 24%, 100% 100%, 0 100%);
-    }
-    .resonator-orbit {
-      position: absolute;
-      width: 310px;
-      aspect-ratio: 1;
-      left: 50%;
-      top: 44%;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgba(210, 255, 239, .27);
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 34px rgba(185,255,230,.018), inset 0 0 0 76px rgba(185,255,230,.02);
-    }
-    .resonator-orbit::before,
-    .resonator-orbit::after {
-      content: "";
-      position: absolute;
-      inset: 25%;
-      border: 1px solid rgba(185,255,230,.18);
-      transform: rotate(45deg);
-    }
-    .resonator-orbit::after { inset: 36%; transform: rotate(0deg); background: rgba(185,255,230,.06); }
-    .resonator-number {
-      position: absolute;
-      left: 30px;
-      top: 28px;
-      color: rgba(245,255,251,.28);
-      font-family: Rajdhani, sans-serif;
-      font-size: 72px;
-      font-weight: 700;
-      line-height: 1;
-    }
-    .resonator-info {
-      position: absolute;
-      inset: auto 30px 30px;
-      z-index: 2;
-    }
-    .resonator-role { color: var(--accent); font-family: Rajdhani, sans-serif; letter-spacing: .18em; font-size: 12px; }
-    .resonator h3 { margin: 8px 0; font-size: 36px; }
-    .resonator p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
+    .echo-layout { display: grid; grid-template-columns: 330px 1fr; gap: 24px; }
+    .echo-tabs { display: grid; gap: 10px; align-content: start; }
+    .echo-tab { padding: 20px; text-align: left; color: var(--muted); border: 1px solid var(--line); background: rgba(5,10,8,.35); cursor: pointer; }
+    .echo-tab strong { display: block; color: white; font-size: 1.1rem; margin-bottom: 5px; }
+    .echo-tab.active { background: var(--accent); color: #183027; border-color: var(--accent); }
+    .echo-tab.active strong { color: #06100c; }
+    .echo-panel { min-height: 390px; padding: 38px; position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+    .echo-panel::before { content: ""; position: absolute; right: -110px; top: -110px; width: 340px; height: 340px; border-radius: 50%; border: 1px solid var(--line-strong); box-shadow: inset 0 0 0 46px rgba(201,251,232,.02), inset 0 0 0 92px rgba(201,251,232,.02); }
+    .echo-panel h3 { margin: 10px 0; font-size: clamp(2.2rem, 5vw, 4rem); }
+    .echo-panel p { max-width: 650px; color: var(--muted); line-height: 1.9; }
+    .cost-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .cost { min-width: 110px; padding: 15px; border: 1px solid var(--line); }
+    .cost strong { display: block; color: var(--accent); font: 700 1.5rem "Rajdhani"; }
 
-    .world {
-      position: relative;
-      min-height: 670px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(90deg, rgba(4,9,8,.88), rgba(4,9,8,.18)),
-        radial-gradient(circle at 76% 40%, rgba(132,237,199,.24), transparent 28%),
-        linear-gradient(145deg, #13241f, #050908 68%);
-      box-shadow: var(--shadow);
-    }
-    .world::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(185,255,230,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(185,255,230,.07) 1px, transparent 1px);
-      background-size: 58px 58px;
-      mask-image: linear-gradient(90deg, transparent, black 40%, black);
-    }
-    .world-copy {
-      position: relative;
-      z-index: 2;
-      width: min(590px, calc(100% - 48px));
-      margin-right: auto;
-      padding-left: clamp(28px, 6vw, 86px);
-    }
-    .world-copy h2 { margin: 12px 0 22px; font-size: clamp(42px, 6vw, 76px); line-height: 1.05; }
-    .world-copy p { color: #c1ccc7; line-height: 1.9; }
-    .world-ring {
-      position: absolute;
-      right: clamp(-110px, 5vw, 90px);
-      width: min(54vw, 650px);
-      aspect-ratio: 1;
-      border: 1px solid rgba(185,255,230,.28);
-      border-radius: 50%;
-      animation: rotate 24s linear infinite;
-    }
-    .world-ring::before,
-    .world-ring::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px dashed rgba(185,255,230,.22);
-    }
-    .world-ring::before { inset: 10%; }
-    .world-ring::after { inset: 28%; border-style: solid; box-shadow: 0 0 80px rgba(98,230,189,.2); }
-    .world-ring span {
-      position: absolute;
-      width: 14px;
-      aspect-ratio: 1;
-      left: 50%;
-      top: -7px;
-      border: 1px solid var(--accent);
-      background: var(--bg);
-      transform: rotate(45deg);
-    }
-    @keyframes rotate { to { transform: rotate(360deg); } }
+    .world-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; }
+    .region-map { min-height: 520px; position: relative; border: 1px solid var(--line); background: radial-gradient(circle at 48% 48%, rgba(94,199,163,.17), transparent 35%), #07100d; overflow: hidden; }
+    .region-map::before, .region-map::after { content: ""; position: absolute; inset: 12%; border: 1px solid var(--line); border-radius: 48% 52% 42% 58%; transform: rotate(-12deg); }
+    .region-map::after { inset: 27%; transform: rotate(26deg); }
+    .map-node { position: absolute; transform: translate(-50%, -50%); padding: 0; color: white; background: transparent; border: 0; cursor: pointer; }
+    .map-node span { display: block; width: 14px; height: 14px; margin: auto; border: 2px solid var(--accent); border-radius: 50%; box-shadow: 0 0 0 7px rgba(105,221,182,.1), 0 0 24px rgba(105,221,182,.6); }
+    .map-node strong { display: block; margin-top: 10px; font-size: .78rem; white-space: nowrap; }
+    .map-node.active span { background: var(--accent); }
+    .region-copy { padding: 42px; border: 1px solid var(--line); background: var(--panel); }
+    .region-copy h3 { margin: 12px 0; font-size: clamp(2.4rem, 5vw, 4.4rem); }
+    .region-copy p { color: var(--muted); line-height: 1.9; }
+    .region-facts { margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .region-facts div { padding: 16px; border: 1px solid var(--line); }
+    .region-facts small { display: block; color: var(--muted); }
 
-    .download {
-      text-align: center;
-      padding-bottom: 140px !important;
-    }
-    .download-panel {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(52px, 8vw, 100px) 24px;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(134, 239, 201, .18), transparent 40%),
-        linear-gradient(135deg, rgba(13, 29, 24, .94), rgba(4, 9, 8, .98));
-      box-shadow: var(--shadow);
-    }
-    .download-panel::before,
-    .download-panel::after {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 1px;
-      top: 36px;
-      background: linear-gradient(90deg, transparent, var(--accent));
-    }
-    .download-panel::before { left: -30px; transform: rotate(12deg); }
-    .download-panel::after { right: -30px; transform: rotate(-12deg) scaleX(-1); }
-    .download h2 { margin: 10px 0 18px; font-size: clamp(42px, 6vw, 76px); }
-    .download p { max-width: 650px; margin: 0 auto; color: var(--muted); line-height: 1.8; }
-    .download .hero-actions { justify-content: center; }
+    .download-panel { padding: 60px; border: 1px solid var(--line-strong); background: linear-gradient(135deg, rgba(36,84,69,.68), rgba(5,9,8,.96)); box-shadow: var(--shadow); }
+    .download-panel h2 { max-width: 760px; }
+    .platforms { margin: 28px 0; display: flex; flex-wrap: wrap; gap: 10px; }
+    .platforms span { padding: 9px 13px; border: 1px solid var(--line); color: #d4ded9; }
 
-    .site-footer {
-      border-top: 1px solid var(--line);
-      background: #030605;
-    }
-    .footer-shell {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      padding: 34px 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      color: #78857f;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-    .footer-shell strong { color: #cbd6d1; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; align-content: start; }
+    footer { padding: 28px 0 40px; color: var(--muted); border-top: 1px solid var(--line); }
+    .footer-grid { display: flex; justify-content: space-between; gap: 30px; align-items: start; }
+    footer strong { color: white; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
     .footer-links a:hover { color: var(--accent); }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .75s ease, transform .75s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
-    @media (max-width: 960px) {
-      .nav-shell { height: 72px; }
-      .site-nav {
-        position: fixed;
-        inset: 72px 0 auto;
-        padding: 18px 20px 24px;
-        display: grid;
-        background: rgba(3, 8, 7, .97);
-        border-bottom: 1px solid var(--line);
-        transform: translateY(-120%);
-        transition: transform .25s ease;
-      }
-      .site-nav.open { transform: translateY(0); }
-      .site-nav a { padding: 13px 8px; }
-      .site-nav a::after { left: 8px; right: auto; width: 40px; bottom: 7px; transform-origin: left; }
-      .menu-btn { display: inline-grid; place-items: center; }
-      .hero-shell { grid-template-columns: 1fr; gap: 42px; }
-      .hero-data { max-width: 550px; }
-      .section-head { grid-template-columns: 1fr; gap: 20px; }
-      .news-grid { grid-template-columns: 1fr 1fr; }
-      .news-card.featured { grid-column: 1 / -1; min-height: 480px; }
-      .resonator-grid { grid-template-columns: 1fr; }
-      .resonator { min-height: 390px; }
-      .world-ring { opacity: .5; right: -180px; }
+    @media (max-width: 980px) {
+      .menu-btn { display: grid; place-items: center; }
+      .site-nav { position: fixed; top: 76px; left: 20px; right: 20px; display: none; padding: 14px; background: rgba(5,9,8,.97); border: 1px solid var(--line); flex-direction: column; align-items: stretch; }
+      .site-nav.open { display: flex; }
+      .site-nav a { padding: 13px 12px; }
+      .site-nav a::after { bottom: 5px; }
+      .nav-download { margin-left: 0; }
+      .hero-grid, .world-layout { grid-template-columns: 1fr; }
+      .hero { align-items: center; }
+      .terminal-card { max-width: 560px; }
+      .portal-grid { grid-template-columns: 1fr 1fr; }
+      .portal-card.featured { grid-column: span 2; grid-row: auto; }
+      .resonator-grid { grid-template-columns: repeat(2, 1fr); }
+      .echo-layout { grid-template-columns: 1fr; }
+      .echo-tabs { grid-template-columns: repeat(3, 1fr); }
     }
 
-    @media (max-width: 640px) {
-      .nav-shell,
-      .hero-shell,
-      main section:not(.hero),
-      .footer-shell { width: min(100% - 28px, var(--max)); }
-      .brand { min-width: 0; }
-      .brand-copy strong { font-size: 17px; }
+    @media (max-width: 650px) {
+      .wrap { width: min(100% - 28px, var(--max)); }
       .brand-copy small { display: none; }
-      .lang-btn { display: none; }
-      .hero { background-position: 64% center; }
-      .hero-shell { padding-top: 130px; padding-bottom: 76px; }
-      .hero h1 { font-size: clamp(52px, 18vw, 78px); }
-      .hero h1 span { font-size: .3em; letter-spacing: .18em; }
-      .hero-copy { font-size: 15px; }
-      .hero-actions { display: grid; }
-      .btn { width: 100%; }
-      .hero-data { padding-left: 18px; }
-      main section:not(.hero) { padding: 84px 0; }
-      .news-grid { grid-template-columns: 1fr; }
-      .news-card.featured { grid-column: auto; }
-      .news-card, .news-card.featured { min-height: 390px; }
-      .world { min-height: 610px; }
-      .world-copy { padding-left: 24px; }
-      .world-ring { width: 520px; right: -300px; }
-      .footer-shell { flex-direction: column; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
+      .hero { padding-top: 120px; }
+      .hero h1 { font-size: clamp(4.2rem, 24vw, 7rem); }
+      .hero-grid { gap: 38px; }
+      .section { padding: 78px 0; }
+      .section-head { display: block; }
+      .portal-grid, .resonator-grid { grid-template-columns: 1fr; }
+      .portal-card.featured { grid-column: auto; }
+      .echo-tabs { grid-template-columns: 1fr; }
+      .echo-panel, .region-copy, .download-panel { padding: 26px; }
+      .region-map { min-height: 400px; }
+      .footer-grid { flex-direction: column; }
     }
   </style>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">跳到主要內容</a>
 
   <header class="site-header" id="header">
-    <div class="nav-shell">
-      <a class="brand" href="#top" aria-label="回到首頁">
+    <div class="wrap nav-shell">
+      <a class="brand" href="#top" aria-label="鳴潮首頁">
         <span class="brand-glyph" aria-hidden="true"></span>
-        <span class="brand-copy">
-          <strong>WUTHERING</strong>
-          <small>RESONANCE ARCHIVE</small>
-        </span>
+        <span class="brand-copy"><strong>鳴潮</strong><small>WUTHERING WAVES</small></span>
       </a>
-
-      <nav class="site-nav" id="siteNav" aria-label="主要選單">
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">☰</button>
+      <nav class="site-nav" id="siteNav" aria-label="主要導覽">
         <a class="active" href="#top">首頁</a>
-        <a href="#news">最新情報</a>
+        <a href="#news">情報</a>
         <a href="#resonators">共鳴者</a>
-        <a href="#world">世界觀</a>
-        <a href="#download">立即遊玩</a>
+        <a href="#echoes">聲骸</a>
+        <a href="#world">世界</a>
+        <a class="nav-download" href="#download">下載</a>
       </nav>
-
-      <div class="header-actions">
-        <button class="lang-btn" type="button" aria-label="目前語言：繁體中文">繁中</button>
-        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="開啟選單">☰</button>
-      </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-shell">
-        <div class="reveal visible">
-          <p class="kicker">The world keeps resonating</p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-kicker">OPEN-WORLD ACTION RPG</div>
           <h1 id="hero-title">鳴潮<span>WUTHERING WAVES</span></h1>
-          <p class="hero-copy">你將以漂泊者嘅身份喺文明崩壞後甦醒，聆聽萬物殘留嘅頻率，與共鳴者一齊跨越悲鳴，重新定義世界嘅走向。</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">前往官方網站 <span class="arrow">↗</span></a>
-            <a class="btn ghost" href="#resonators">探索共鳴者 <span class="arrow">↓</span></a>
+          <p class="hero-lead">文明在「悲鳴」之後重生。以漂泊者身份甦醒，吸收聲骸、組建共鳴者隊伍，追尋失落記憶與世界殘留嘅頻率。</p>
+          <div class="actions">
+            <a class="btn primary" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">前往官方網站 ↗</a>
+            <a class="btn" href="#resonators">查看共鳴者</a>
           </div>
         </div>
 
-        <aside class="hero-data reveal visible" aria-label="世界觀摘要">
-          <p class="data-label">TACET FIELD // SIGNAL DETECTED</p>
-          <h2>鳴潮往復，文明不屈。</h2>
-          <p>一個以「聲音、頻率、殘響」為核心語言嘅開放世界。介面採用高對比黑白、冷青綠光源與戰術 HUD 線條。</p>
-          <div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <aside class="terminal-card reveal" aria-label="終端連線資料">
+          <div class="terminal-head"><span>PANGU TERMINAL</span><span>ONLINE</span></div>
+          <div class="waveform" aria-hidden="true">
+            <span style="--h:18px;--d:.1s"></span><span style="--h:42px;--d:.4s"></span><span style="--h:27px;--d:.2s"></span><span style="--h:58px;--d:.6s"></span><span style="--h:34px;--d:.3s"></span><span style="--h:66px;--d:.8s"></span><span style="--h:44px;--d:.2s"></span><span style="--h:24px;--d:.5s"></span><span style="--h:54px;--d:.7s"></span><span style="--h:30px;--d:.15s"></span><span style="--h:61px;--d:.45s"></span><span style="--h:22px;--d:.65s"></span>
+          </div>
+          <div class="terminal-data">
+            <div><small>身份</small><strong>漂泊者</strong></div>
+            <div><small>狀態</small><strong>共鳴中</strong></div>
+            <div><small>終端</small><strong>已連線</strong></div>
+            <div><small>資料</small><strong>可讀取</strong></div>
+          </div>
         </aside>
       </div>
-      <span class="scroll-mark" aria-hidden="true">SCROLL</span>
     </section>
 
-    <section id="news" aria-labelledby="news-title">
-      <div class="section-head reveal">
-        <div>
-          <span class="index">01 // INFORMATION</span>
-          <h2 id="news-title">最新情報</h2>
-        </div>
-        <p>用斜切卡片、低飽和背景同高亮頻率線建立官方主頁感。以下內容屬於概念展示，按卡片可跳到相關角色區域。</p>
-      </div>
-
-      <div class="news-grid">
-        <a class="news-card featured reveal" data-id="1" href="#resonators" style="--card-glow: rgba(121, 238, 205, .4)">
-          <span class="tag">FEATURED</span>
-          <h3>共鳴者檔案<br />已完成同步</h3>
-          <p>守岸人、愛彌斯與相里要嘅概念資料正式接入頁面。</p>
-        </a>
-        <a class="news-card reveal" data-id="2" href="#world" style="--card-glow: rgba(211, 224, 177, .23)">
-          <span class="tag">WORLD</span>
-          <h3>黑海岸<br />頻率監測</h3>
-          <p>透過抽象軌道與掃描網格呈現世界資料。</p>
-        </a>
-        <a class="news-card reveal" data-id="3" href="#download" style="--card-glow: rgba(138, 180, 255, .25)">
-          <span class="tag">SYSTEM</span>
-          <h3>跨平台<br />連接入口</h3>
-          <p>保留 PC、手機與主機版下載導向位置。</p>
-        </a>
-      </div>
-    </section>
-
-    <div class="resonator-shell">
-      <section id="resonators" aria-labelledby="resonators-title">
+    <section class="section" id="news">
+      <div class="wrap">
         <div class="section-head reveal">
-          <div>
-            <span class="index">02 // RESONATORS</span>
-            <h2 id="resonators-title">共鳴者</h2>
-          </div>
-          <p>角色卡以資料終端形式呈現，之後可以再換成正式立繪、加入角色語音、屬性圖示同詳情彈窗。</p>
+          <div><span class="section-index">01 // OFFICIAL PORTAL</span><h2>官方入口</h2></div>
+          <p>集中遊戲本身最重要嘅入口：版本資訊、共鳴者展示、世界資料與官方公告。所有帳戶、下載及付款操作均會導向庫洛官方網站。</p>
+        </div>
+        <div class="portal-grid">
+          <a class="portal-card featured reveal" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">
+            <span class="tag">LATEST VERSION</span><span class="corner">01</span>
+            <h3>版本與活動情報</h3><p>查看官方首頁、版本主題、活動預告及最新共鳴者內容。</p>
+          </a>
+          <a class="portal-card reveal" href="#resonators"><span class="tag">RESONATORS</span><span class="corner">02</span><h3>共鳴者檔案</h3><p>按共鳴屬性瀏覽角色，查看武器類型與定位。</p></a>
+          <a class="portal-card reveal" href="#echoes"><span class="tag">ECHO SYSTEM</span><span class="corner">03</span><h3>聲骸系統</h3><p>了解聲骸吸收、COST 配置與合鳴效果。</p></a>
+          <a class="portal-card reveal" href="#world"><span class="tag">WORLD DATA</span><span class="corner">04</span><h3>世界與地區</h3><p>由今州、黑海岸到黎那汐塔，讀取地區資料。</p></a>
+          <a class="portal-card reveal" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer"><span class="tag">ANNOUNCEMENTS</span><span class="corner">05</span><h3>官方公告</h3><p>伺服器維護、活動規則及系統更新以官方公告為準。</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="resonators">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="section-index">02 // RESONATOR DATABASE</span><h2>共鳴者</h2></div>
+          <p>共鳴者能感知並操控特定頻率。用下方屬性篩選，快速查看角色檔案。</p>
+        </div>
+
+        <div class="filters reveal" role="group" aria-label="共鳴屬性篩選">
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="spectro">衍射</button>
+          <button class="filter-btn" data-filter="havoc">湮滅</button>
+          <button class="filter-btn" data-filter="aero">氣動</button>
+          <button class="filter-btn" data-filter="fusion">熱熔</button>
+          <button class="filter-btn" data-filter="glacio">冷凝</button>
+          <button class="filter-btn" data-filter="electro">導電</button>
         </div>
 
         <div class="resonator-grid">
-          <article class="resonator reveal" style="--tone:#263f39" tabindex="0">
-            <span class="resonator-number">01</span>
-            <div class="resonator-orbit" aria-hidden="true"></div>
-            <div class="resonator-info">
-              <span class="resonator-role">THE SHOREKEEPER // 人造生命</span>
-              <h3>守岸人</h3>
-              <p>黑海岸嘅守護者，以溫柔而精確嘅方式維持系統運作。</p>
-            </div>
+          <article class="resonator-card reveal" data-element="spectro" style="--tone:#464838;--element:#f3e7a4">
+            <span class="resonator-number">01</span><div class="resonator-meta"><span class="pill element">衍射</span><span class="pill">音感儀</span></div>
+            <div class="resonator-info"><h3>守岸人</h3><p>黑海岸守護者，以穩定隊伍循環與治療支援漂泊者。</p></div>
           </article>
-
-          <article class="resonator reveal" style="--tone:#3d3038" tabindex="0">
-            <span class="resonator-number">02</span>
-            <div class="resonator-orbit" aria-hidden="true"></div>
-            <div class="resonator-info">
-              <span class="resonator-role">AEMEATH // 電子幽靈</span>
-              <h3>愛彌斯</h3>
-              <p>意識遊走於電子設備之間，並能與大型機兵形態連接。</p>
-            </div>
+          <article class="resonator-card reveal" data-element="spectro" style="--tone:#3f4743;--element:#f3e7a4">
+            <span class="resonator-number">02</span><div class="resonator-meta"><span class="pill element">衍射</span><span class="pill">長刃</span></div>
+            <div class="resonator-info"><h3>今汐</h3><p>今州令尹，以歲主之力守護今州，擅長高額共鳴技能傷害。</p></div>
           </article>
-
-          <article class="resonator reveal" style="--tone:#2e3842" tabindex="0">
-            <span class="resonator-number">03</span>
-            <div class="resonator-orbit" aria-hidden="true"></div>
-            <div class="resonator-info">
-              <span class="resonator-role">XIANGli YAO // 義肢技術</span>
-              <h3>相里要</h3>
-              <p>以高階義肢與精密計算作戰，科技感最強嘅人類共鳴者之一。</p>
-            </div>
+          <article class="resonator-card reveal" data-element="fusion" style="--tone:#493632;--element:#ff9e78">
+            <span class="resonator-number">03</span><div class="resonator-meta"><span class="pill element">熱熔</span><span class="pill">迅刀</span></div>
+            <div class="resonator-info"><h3>長離</h3><p>以謀略與火焰掌控戰局，透過心眼與共鳴技能累積爆發。</p></div>
+          </article>
+          <article class="resonator-card reveal" data-element="aero" style="--tone:#30463f;--element:#83e8c4">
+            <span class="resonator-number">04</span><div class="resonator-meta"><span class="pill element">氣動</span><span class="pill">長刃</span></div>
+            <div class="resonator-info"><h3>忌炎</h3><p>夜歸軍將領，操控青龍般嘅氣流，以強力重擊壓制敵群。</p></div>
+          </article>
+          <article class="resonator-card reveal" data-element="havoc" style="--tone:#423340;--element:#d9a0e8">
+            <span class="resonator-number">05</span><div class="resonator-meta"><span class="pill element">湮滅</span><span class="pill">迅刀</span></div>
+            <div class="resonator-info"><h3>椿</h3><p>黑海岸成員，以高速近戰與紅椿形態持續輸出。</p></div>
+          </article>
+          <article class="resonator-card reveal" data-element="electro" style="--tone:#303847;--element:#98b7ff">
+            <span class="resonator-number">06</span><div class="resonator-meta"><span class="pill element">導電</span><span class="pill">臂鎧</span></div>
+            <div class="resonator-info"><h3>相里要</h3><p>華胥研究院首席研究員，以精密計算與義肢技術作戰。</p></div>
           </article>
         </div>
-      </section>
-    </div>
-
-    <section id="world" aria-labelledby="world-title">
-      <div class="world reveal">
-        <div class="world-copy">
-          <span class="index">03 // WORLD DATABASE</span>
-          <h2 id="world-title">聆聽世界<br />殘留嘅頻率</h2>
-          <p>終末災難「悲鳴」改寫咗文明規則。無形嘅聲音被記錄成殘響，生命、記憶與危險都以頻率形式殘留。漂泊者要做嘅，唔止係戰鬥，而係理解每一道聲音背後嘅選擇。</p>
-          <div class="hero-actions">
-            <a class="btn ghost" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">閱讀官方資料 <span class="arrow">↗</span></a>
-          </div>
-        </div>
-        <div class="world-ring" aria-hidden="true"><span></span></div>
       </div>
     </section>
 
-    <section class="download" id="download" aria-labelledby="download-title">
-      <div class="download-panel reveal">
-        <span class="index">04 // CONNECTION READY</span>
-        <h2 id="download-title">準備好再次共鳴？</h2>
-        <p>此頁係 Bernie 製作嘅非官方介面概念，唔代表庫洛遊戲。遊戲下載、帳戶及付款操作請使用《鳴潮》官方網站。</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">開啟《鳴潮》官方網站 <span class="arrow">↗</span></a>
-          <a class="btn ghost" href="../index.html">返回原本網站 <span class="arrow">←</span></a>
+    <section class="section" id="echoes">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="section-index">03 // ECHO SYSTEM</span><h2>聲骸系統</h2></div>
+          <p>擊敗殘象後吸收其頻率，將聲骸裝備到共鳴者身上，取得主詞條、副詞條、聲骸技能與合鳴效果。</p>
+        </div>
+        <div class="echo-layout">
+          <div class="echo-tabs reveal" role="tablist" aria-label="聲骸資料分類">
+            <button class="echo-tab active" data-echo="absorb"><strong>吸收聲骸</strong>收集殘象頻率</button>
+            <button class="echo-tab" data-echo="cost"><strong>COST 配置</strong>4 / 3 / 1 組合</button>
+            <button class="echo-tab" data-echo="sonata"><strong>合鳴效果</strong>組成套裝加成</button>
+          </div>
+          <div class="echo-panel reveal" id="echoPanel" aria-live="polite">
+            <span class="section-index" id="echoIndex">ECHO CAPTURE</span>
+            <h3 id="echoTitle">吸收殘象頻率</h3>
+            <p id="echoText">漂泊者可以透過終端吸收擊敗後留下嘅殘象頻率，將其轉化為可裝備聲骸。主聲骸可提供主動技能，其餘位置用作補足 COST、屬性與合鳴效果。</p>
+            <div class="cost-row" id="costRow">
+              <div class="cost"><strong>主聲骸</strong><span>可施放聲骸技能</span></div>
+              <div class="cost"><strong>5 格</strong><span>組成完整配置</span></div>
+              <div class="cost"><strong>資料塢</strong><span>提升吸收品質</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="world">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="section-index">04 // WORLD DATABASE</span><h2>索拉里斯世界</h2></div>
+          <p>「悲鳴」為文明留下殘響與未知生命。選擇地圖節點，切換地區檔案。</p>
+        </div>
+        <div class="world-layout">
+          <div class="region-map reveal" aria-label="地區選擇地圖">
+            <button class="map-node active" style="left:34%;top:37%" data-region="jinzhou"><span></span><strong>今州</strong></button>
+            <button class="map-node" style="left:64%;top:28%" data-region="blackshores"><span></span><strong>黑海岸</strong></button>
+            <button class="map-node" style="left:70%;top:69%" data-region="rinascita"><span></span><strong>黎那汐塔</strong></button>
+          </div>
+          <article class="region-copy reveal" aria-live="polite">
+            <span class="section-index" id="regionCode">HUANGLONG // JINZHOU</span>
+            <h3 id="regionTitle">今州</h3>
+            <p id="regionText">位於瑝瓏邊境嘅重鎮，長期抵禦殘象威脅。漂泊者喺此與今汐、忌炎及眾多共鳴者相遇，逐步追查自己甦醒背後嘅原因。</p>
+            <div class="region-facts">
+              <div><small>核心勢力</small><strong id="regionFaction">今州府／夜歸軍</strong></div>
+              <div><small>關鍵概念</small><strong id="regionKeyword">歲主・角</strong></div>
+              <div><small>環境</small><strong id="regionEnv">山地與城市</strong></div>
+              <div><small>檔案狀態</small><strong>已解鎖</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="wrap">
+        <div class="download-panel reveal">
+          <span class="section-index">05 // CONNECTION READY</span>
+          <h2>以漂泊者身份，重新聆聽世界。</h2>
+          <p class="muted">遊戲帳戶、版本下載、儲值及活動規則請以《鳴潮》官方網站為準。</p>
+          <div class="platforms" aria-label="支援平台">
+            <span>Windows</span><span>macOS</span><span>PlayStation 5</span><span>iOS</span><span>Android</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">開啟官方網站 ↗</a>
+            <a class="btn" href="#top">返回頂部</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-shell">
-      <div>
-        <strong>Wuthering Waves Inspired Interface</strong><br />
-        Fan-made, non-commercial concept by Bernie. 《鳴潮》及相關素材版權屬 KURO GAMES。
-      </div>
-      <div class="footer-links">
-        <a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">官方網站</a>
-        <a href="https://github.com/bernie8026/hi3" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="#top">返回頂部</a>
-      </div>
+  <footer>
+    <div class="wrap footer-grid">
+      <div><strong>鳴潮｜Wuthering Waves</strong><br />Bernie 製作嘅非官方、非商業 fan site。遊戲名稱、角色與世界觀版權屬 KURO GAMES。</div>
+      <div class="footer-links"><a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer">官方網站</a><a href="https://github.com/bernie8026/hi3" target="_blank" rel="noopener noreferrer">GitHub</a></div>
     </div>
   </footer>
 
@@ -819,19 +445,17 @@
     const header = document.getElementById('header');
     const nav = document.getElementById('siteNav');
     const menuBtn = document.getElementById('menuBtn');
-    const navLinks = [...document.querySelectorAll('.site-nav a')];
-    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
 
-    const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 24);
+    const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 20);
     updateHeader();
     window.addEventListener('scroll', updateHeader, { passive: true });
 
     menuBtn.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(isOpen));
-      menuBtn.textContent = isOpen ? '×' : '☰';
+      const open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.textContent = open ? '×' : '☰';
     });
-
     navLinks.forEach(link => link.addEventListener('click', () => {
       nav.classList.remove('open');
       menuBtn.setAttribute('aria-expanded', 'false');
@@ -845,9 +469,8 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: .14 });
-
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -855,8 +478,66 @@
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
       });
     }, { rootMargin: '-35% 0px -55% 0px' });
+    document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
 
-    sections.forEach(section => sectionObserver.observe(section));
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        document.querySelectorAll('.resonator-card').forEach(card => {
+          card.classList.toggle('hidden', filter !== 'all' && card.dataset.element !== filter);
+        });
+      });
+    });
+
+    const echoData = {
+      absorb: {
+        index: 'ECHO CAPTURE', title: '吸收殘象頻率',
+        text: '漂泊者可以透過終端吸收擊敗後留下嘅殘象頻率，將其轉化為可裝備聲骸。主聲骸可提供主動技能，其餘位置用作補足 COST、屬性與合鳴效果。',
+        cards: [['主聲骸','可施放聲骸技能'],['5 格','組成完整配置'],['資料塢','提升吸收品質']]
+      },
+      cost: {
+        index: 'COST MATRIX', title: '建立 COST 配置',
+        text: '每位共鳴者有固定 COST 上限。常見配置會以 COST 4、COST 3 與 COST 1 聲骸組合，平衡主詞條、屬性傷害與實戰循環。',
+        cards: [['COST 4','首領級聲骸'],['COST 3','精英級聲骸'],['COST 1','普通級聲骸']]
+      },
+      sonata: {
+        index: 'SONATA EFFECT', title: '啟動合鳴效果',
+        text: '裝備指定套裝嘅聲骸，可以啟動兩件或五件合鳴效果。配裝時需要同時考慮屬性加成、角色機制與隊伍輪轉。',
+        cards: [['2 件','基礎屬性加成'],['5 件','完整套裝效果'],['調諧','解鎖副詞條']]
+      }
+    };
+    document.querySelectorAll('.echo-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.echo-tab').forEach(btn => btn.classList.remove('active'));
+        tab.classList.add('active');
+        const data = echoData[tab.dataset.echo];
+        document.getElementById('echoIndex').textContent = data.index;
+        document.getElementById('echoTitle').textContent = data.title;
+        document.getElementById('echoText').textContent = data.text;
+        document.getElementById('costRow').innerHTML = data.cards.map(([title, text]) => `<div class="cost"><strong>${title}</strong><span>${text}</span></div>`).join('');
+      });
+    });
+
+    const regions = {
+      jinzhou: { code:'HUANGLONG // JINZHOU', title:'今州', text:'位於瑝瓏邊境嘅重鎮，長期抵禦殘象威脅。漂泊者喺此與今汐、忌炎及眾多共鳴者相遇，逐步追查自己甦醒背後嘅原因。', faction:'今州府／夜歸軍', keyword:'歲主・角', env:'山地與城市' },
+      blackshores: { code:'THE BLACK SHORES', title:'黑海岸', text:'研究「悲鳴」與世界頻率嘅神秘組織所在地。守岸人維持泰緹斯系統運作，並長久等待漂泊者再次回到呢片海岸。', faction:'黑海岸', keyword:'泰緹斯系統', env:'群島與資料空間' },
+      rinascita: { code:'RINASCITA', title:'黎那汐塔', text:'由多個城邦與家族構成嘅海上國度，藝術、信仰與聲骸文化交織。漂泊者喺新舞台上接觸截然不同嘅秩序與危機。', faction:'城邦／家族', keyword:'聲骸文化', env:'海島與都市' }
+    };
+    document.querySelectorAll('.map-node').forEach(node => {
+      node.addEventListener('click', () => {
+        document.querySelectorAll('.map-node').forEach(btn => btn.classList.remove('active'));
+        node.classList.add('active');
+        const data = regions[node.dataset.region];
+        document.getElementById('regionCode').textContent = data.code;
+        document.getElementById('regionTitle').textContent = data.title;
+        document.getElementById('regionText').textContent = data.text;
+        document.getElementById('regionFaction').textContent = data.faction;
+        document.getElementById('regionKeyword').textContent = data.keyword;
+        document.getElementById('regionEnv').textContent = data.env;
+      });
+    });
   </script>
 </body>
 </html>
